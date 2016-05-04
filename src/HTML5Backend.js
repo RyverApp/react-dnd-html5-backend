@@ -299,6 +299,8 @@ export default class HTML5Backend {
       try {
         // Firefox won't drag without setting data
         dataTransfer.setData('application/json', {});
+        // No drop event in an Electron WebView without setting text data (cannot be an empty string)
+        dataTransfer.setData('text/plain', 'text');
       } catch (err) {
         // IE doesn't support MIME types in setData
       }
